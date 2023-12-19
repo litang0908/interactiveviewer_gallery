@@ -25,7 +25,8 @@ class InteractiveviewerGallery<T> extends StatefulWidget {
     this.maxScale = 2.5,
     this.minScale = 1.0,
     this.onPageChanged,
-  });
+    Key? key,
+  }):super(key: key);
 
   /// The sources to show.
   final List<T> sources;
@@ -44,10 +45,10 @@ class InteractiveviewerGallery<T> extends StatefulWidget {
 
 
   @override
-  _TweetSourceGalleryState createState() => _TweetSourceGalleryState();
+  TweetSourceGalleryState createState() => TweetSourceGalleryState();
 }
 
-class _TweetSourceGalleryState extends State<InteractiveviewerGallery> with SingleTickerProviderStateMixin {
+class TweetSourceGalleryState extends State<InteractiveviewerGallery> with SingleTickerProviderStateMixin {
   PageController? _pageController;
   TransformationController? _transformationController;
 
@@ -244,5 +245,7 @@ class _TweetSourceGalleryState extends State<InteractiveviewerGallery> with Sing
     );
     _animationController.forward(from: 0).whenComplete(() => _onScaleChanged(targetScale));
   }
+
+  PageController? getPageController()=>_pageController;
 }
 
